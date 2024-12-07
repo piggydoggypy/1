@@ -10,8 +10,11 @@ from random import randint
 class SimplePlanner(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setGeometry(600, 100, 800, 600)
+        self.pushButton = QPushButton('myau', self)
+        self.pushButton.move(400, 400)
         self.pushButton.clicked.connect(self.painterest)
+        self.pushButton.resize(100, 100)
         self.do_draw = False
 
     def painterest(self):
@@ -30,7 +33,9 @@ class SimplePlanner(QMainWindow):
         painter.end()
 
     def paint(self, painter):
-        painter.setBrush(QColor(255, 255, 0))
+        r, g, b = randint(0, 255), randint(0, 255), randint(0, 255)
+        painter.setBrush(QColor(r, g, b))
+
         x = randint(50, 400)
         painter.drawEllipse(randint(0, self.width() - 200), randint(0, self.height() - 200),
                             x, x)
